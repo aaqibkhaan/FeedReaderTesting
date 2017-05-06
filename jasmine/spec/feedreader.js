@@ -33,6 +33,7 @@ $(function() {
          * and that the URL is not empty.
          */
          it('Feed URL is not Empty' , function(){
+                // checking all feeds contains URL 
              allFeeds.forEach(function(feed) {
                 expect(feed.url).toBeDefined();
                 expect(feed.url).toBeTruthy();
@@ -45,6 +46,7 @@ $(function() {
          * and that the name is not empty.
          */
             it('Feed Name is not Empty' , function(){
+            // checking all feeds contains NAME
              allFeeds.forEach(function(feed) {
                 expect(feed.name).toBeDefined();
                 expect(feed.name).toBeTruthy();
@@ -62,6 +64,7 @@ $(function() {
          */
          var body = $('body');
          it('Menu is Hidden by default', function(){
+            // checking if the body contains .menu-hidden to make sure menu is hidden
             expect(body).toContain('.menu-hidden');
              });
 
@@ -71,6 +74,7 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
         it("Display and Hide on click", function() {
+            // Making sure the Visibilty chances when clicked and clicked again!
             spyOnEvent($('.menu-icon-link'), 'click');
             $('.menu-icon-link').click();
               expect(body).not.toContain('.menu-hidden');
@@ -89,11 +93,12 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
          describe('Initial Entries' , function(){
-
+            // run this before any spec "it" in this sections
              beforeEach(function(done){
+                // passing the parameters to loadfeed to check its successfully done as loadFeed a Asynchronus function
                 loadFeed(0, done);
              });         
-
+             // once its succesfully done checking there is atleast 1 .feed and .entry
             it("has .Entry and .feed container", function(){
                 expect($('.feed .entry').length).not.toBe(0);
             });
@@ -101,6 +106,28 @@ $(function() {
          });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
+    describe('New Feed Selection' , function(){
+        // declaring 2 variable for comparing
+        var firstFeed, secondFeed;
+        /* TODO: Write a test that ensures when a new feed is loaded
+         * by the loadFeed function that the content actually changes.
+         * Remember, loadFeed() is asynchronous.
+         */
+         // run these before any spec "it" in this sections
+         beforeEach(function(done){
+            // passing it the paramters and function as loadFeed a Asynchronus function
+              loadFeed(0, function(){
+            firstFeed = $('.feed').text(); });
+            loadFeed(1, function(){
+            secondFeed = $('.feed').text();
+            done(); 
+        });
+         });
+        // checking first Feed is not the same as second feed
+         it('Feed content changes', function(){
+            expect(firstFeed).not.toBe(secondFeed);
+         });
+         });
 
 
 }());
