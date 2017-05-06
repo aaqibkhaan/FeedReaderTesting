@@ -70,14 +70,12 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
-        it("Menu Button is Clicked", function() {
-
+        it("Display and Hide on click", function() {
             spyOnEvent($('.menu-icon-link'), 'click');
             $('.menu-icon-link').click();
               expect(body).not.toContain('.menu-hidden');
             $('.menu-icon-link').click();
               expect(body).toContain('.menu-hidden');
-              
         });
 
 
@@ -90,11 +88,19 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+         describe('Initial Entries' , function(){
+
+             beforeEach(function(done){
+                loadFeed(0, done);
+             });         
+
+            it("has .Entry and .feed container", function(){
+                expect($('.feed .entry').length).not.toBe(0);
+            });
+
+         });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
 
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
+
 }());
