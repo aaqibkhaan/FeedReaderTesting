@@ -6,4 +6,4 @@ This Project is a web-based Test driven application that reads RSS feeds.
 * You can [download]( https://github.com/aaqibkhaan/FeedReaderTesting/archive/master.zip) the repo , unzip it and run index.html
 
 ## Testing Framework
-[Jasmine](http://jasmine.github.io/)
+* [Jasmine](http://jasmine.github.io/)
